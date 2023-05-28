@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package proto;
+
+service myservice {
+  rpc Reverse(ReverseRequest) returns (ReverseResponse) {}
+  rpc CheckEvenOdd(CheckEvenOddRequest) returns (CheckEvenOddResponse) {}
+}
+
+message ReverseRequest {
+  string input = 1;
+}
+
+message ReverseResponse {
+  string output = 1;
+}
+
+message CheckEvenOddRequest {
+  int32 number = 1;
+}
+
+message CheckEvenOddResponse {
+  bool is_even = 1;
+}
