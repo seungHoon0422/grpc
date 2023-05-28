@@ -25,3 +25,8 @@ message CheckEvenOddRequest {
 message CheckEvenOddResponse {
   bool is_even = 1;
 }
+
+// MyService 클라이언트 생성 함수
+func NewMyServiceClient(cc grpc.ClientConnInterface) MyServiceClient {
+  return &myServiceClient{cc}
+}
