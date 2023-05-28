@@ -1,4 +1,4 @@
-module module
+module github.com/seungHoon0422/grpc
 
 go 1.20
 

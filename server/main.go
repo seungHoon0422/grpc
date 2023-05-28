@@ -2,45 +2,55 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net"
 
+	pb "github.com/seungHoon0422/grpc/proto"
+
 	"google.golang.org/grpc"
-
-	pb "module/proto" // "your-module-name"을 프로토콜 버퍼 파일이 위치하는 모듈 이름으로 변경
-
-	"module/evenoddpkg" // 홀짝 여부 확인 로직을 포함한 패키지 이름으로 변경
-	"module/reversepkg" // 문자열 뒤집기 로직을 포함한 패키지 이름으로 변경
 )
 
-type server struct{}
+type server struct {
+	// pb.UnimplementedMyServiceServer
+}
 
 func (s *server) Reverse(ctx context.Context, req *pb.ReverseRequest) (*pb.ReverseResponse, error) {
 	input := req.GetInput()
-	reversed := reversepkg.ReverseString(input)
-
-	return &pb.ReverseResponse{Output: reversed}, nil
+	reversed := reverseString(input)
+	response := &pb.ReverseResponse{
+		Output: reversed,
+	}
+	return response, nil
 }
 
 func (s *server) CheckEvenOdd(ctx context.Context, req *pb.CheckEvenOddRequest) (*pb.CheckEvenOddResponse, error) {
 	number := req.GetNumber()
-	isEven := evenoddpkg.CheckEvenOdd(number)
+	isEven := number%2 == 0
+	response := &pb.CheckEvenOddResponse{
+		IsEven: isEven,
+	}
+	return response, nil
+}
 
-	return &pb.CheckEvenOddResponse{IsEven: isEven}, nil
+func reverseString(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
 }
 
 func main() {
-	lis, err := net.Listen("tcp", ":50051")
+	listener, err := net.Listen("tcp", ":50051")
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterMyServiceServer(s, &server{})
+	// pb.RegisterMyServiceServer(s, &server{})
 
-	fmt.Println("gRPC server is running...")
-	if err := s.Serve(lis); err != nil {
+	log.Println("Server started on port 50051...")
+	if err := s.Serve(listener); err != nil {
 		log.Fatalf("Failed to serve: %v", err)
 	}
 }

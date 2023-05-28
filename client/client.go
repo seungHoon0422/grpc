@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	pb "module/proto"
+	pb "github.com/seungHoon0422/grpc/proto"
 
 	"google.golang.org/grpc"
 )
