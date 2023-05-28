@@ -16,7 +16,7 @@ const (
 )
 
 func main() {
-	// gRPC 서버에 연결
+	// gRPC 서버에 연결합니다.
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Failed to connect: %v", err)
