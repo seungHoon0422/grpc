@@ -1,27 +1,43 @@
 syntax = "proto3";
 
+// 프로토콜 버퍼 버전을 지정합니다.
 
 package proto;
 
+// 프로토콜 버퍼 파일이 속한 패키지를 정의합니다.
+
 option go_package = "github.com/seungHoon0422/grpc/proto";
 
+// gRPC 서비스인 MyService를 정의합니다.
+
 service MyService {
+  // 문자열을 입력받아 뒤집어서 반환하는 RPC입니다.
   rpc Reverse(ReverseRequest) returns (ReverseResponse) {}
+
+  // 정수를 입력받아 홀수인지 짝수인지 확인하는 RPC입니다.
   rpc CheckEvenOdd(CheckEvenOddRequest) returns (CheckEvenOddResponse) {}
 }
 
+// ReverseRequest는 문자열 뒤집기 요청 메시지입니다.
 message ReverseRequest {
+  // 입력 문자열을 저장하는 필드입니다.
   string input = 1;
 }
 
+// ReverseResponse는 문자열 뒤집기 응답 메시지입니다.
 message ReverseResponse {
+  // 뒤집힌 문자열을 저장하는 필드입니다.
   string output = 1;
 }
 
+// CheckEvenOddRequest는 홀수/짝수 확인 요청 메시지입니다.
 message CheckEvenOddRequest {
+  // 입력 정수를 저장하는 필드입니다.
   int32 number = 1;
 }
 
+// CheckEvenOddResponse는 홀수/짝수 확인 응답 메시지입니다.
 message CheckEvenOddResponse {
+  // 입력 정수가 짝수인지를 나타내는 필드입니다.
   bool is_even = 1;
 }
