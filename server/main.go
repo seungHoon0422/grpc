@@ -11,7 +11,7 @@ import (
 )
 
 type server struct {
-	pb.UnimplementedMyServiceServer
+	// pb.UnimplementedMyServiceServer
 }
 
 func (s *server) Reverse(ctx context.Context, req *pb.ReverseRequest) (*pb.ReverseResponse, error) {
@@ -47,7 +47,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterMyServiceServer(s, &server{})
+	// pb.RegisterMyServiceServer(s, &server{})
 
 	log.Println("Server started on port 50051...")
 	if err := s.Serve(listener); err != nil {
