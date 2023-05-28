@@ -14,122 +14,122 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// MyserviceClient is the client API for Myservice service.
+// MyServiceClient is the client API for MyService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type MyserviceClient interface {
+type MyServiceClient interface {
 	Reverse(ctx context.Context, in *ReverseRequest, opts ...grpc.CallOption) (*ReverseResponse, error)
 	CheckEvenOdd(ctx context.Context, in *CheckEvenOddRequest, opts ...grpc.CallOption) (*CheckEvenOddResponse, error)
 }
 
-type myserviceClient struct {
+type myServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewMyserviceClient(cc grpc.ClientConnInterface) MyserviceClient {
-	return &myserviceClient{cc}
+func NewMyServiceClient(cc grpc.ClientConnInterface) MyServiceClient {
+	return &myServiceClient{cc}
 }
 
-func (c *myserviceClient) Reverse(ctx context.Context, in *ReverseRequest, opts ...grpc.CallOption) (*ReverseResponse, error) {
+func (c *myServiceClient) Reverse(ctx context.Context, in *ReverseRequest, opts ...grpc.CallOption) (*ReverseResponse, error) {
 	out := new(ReverseResponse)
-	err := c.cc.Invoke(ctx, "/proto.myservice/Reverse", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.MyService/Reverse", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *myserviceClient) CheckEvenOdd(ctx context.Context, in *CheckEvenOddRequest, opts ...grpc.CallOption) (*CheckEvenOddResponse, error) {
+func (c *myServiceClient) CheckEvenOdd(ctx context.Context, in *CheckEvenOddRequest, opts ...grpc.CallOption) (*CheckEvenOddResponse, error) {
 	out := new(CheckEvenOddResponse)
-	err := c.cc.Invoke(ctx, "/proto.myservice/CheckEvenOdd", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.MyService/CheckEvenOdd", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MyserviceServer is the server API for Myservice service.
-// All implementations must embed UnimplementedMyserviceServer
+// MyServiceServer is the server API for MyService service.
+// All implementations must embed UnimplementedMyServiceServer
 // for forward compatibility
-type MyserviceServer interface {
+type MyServiceServer interface {
 	Reverse(context.Context, *ReverseRequest) (*ReverseResponse, error)
 	CheckEvenOdd(context.Context, *CheckEvenOddRequest) (*CheckEvenOddResponse, error)
-	mustEmbedUnimplementedMyserviceServer()
+	mustEmbedUnimplementedMyServiceServer()
 }
 
-// UnimplementedMyserviceServer must be embedded to have forward compatible implementations.
-type UnimplementedMyserviceServer struct {
+// UnimplementedMyServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedMyServiceServer struct {
 }
 
-func (UnimplementedMyserviceServer) Reverse(context.Context, *ReverseRequest) (*ReverseResponse, error) {
+func (UnimplementedMyServiceServer) Reverse(context.Context, *ReverseRequest) (*ReverseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Reverse not implemented")
 }
-func (UnimplementedMyserviceServer) CheckEvenOdd(context.Context, *CheckEvenOddRequest) (*CheckEvenOddResponse, error) {
+func (UnimplementedMyServiceServer) CheckEvenOdd(context.Context, *CheckEvenOddRequest) (*CheckEvenOddResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckEvenOdd not implemented")
 }
-func (UnimplementedMyserviceServer) mustEmbedUnimplementedMyserviceServer() {}
+func (UnimplementedMyServiceServer) mustEmbedUnimplementedMyServiceServer() {}
 
-// UnsafeMyserviceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to MyserviceServer will
+// UnsafeMyServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MyServiceServer will
 // result in compilation errors.
-type UnsafeMyserviceServer interface {
-	mustEmbedUnimplementedMyserviceServer()
+type UnsafeMyServiceServer interface {
+	mustEmbedUnimplementedMyServiceServer()
 }
 
-func RegisterMyserviceServer(s grpc.ServiceRegistrar, srv MyserviceServer) {
-	s.RegisterService(&Myservice_ServiceDesc, srv)
+func RegisterMyServiceServer(s grpc.ServiceRegistrar, srv MyServiceServer) {
+	s.RegisterService(&MyService_ServiceDesc, srv)
 }
 
-func _Myservice_Reverse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MyService_Reverse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReverseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MyserviceServer).Reverse(ctx, in)
+		return srv.(MyServiceServer).Reverse(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.myservice/Reverse",
+		FullMethod: "/proto.MyService/Reverse",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MyserviceServer).Reverse(ctx, req.(*ReverseRequest))
+		return srv.(MyServiceServer).Reverse(ctx, req.(*ReverseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Myservice_CheckEvenOdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MyService_CheckEvenOdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CheckEvenOddRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MyserviceServer).CheckEvenOdd(ctx, in)
+		return srv.(MyServiceServer).CheckEvenOdd(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.myservice/CheckEvenOdd",
+		FullMethod: "/proto.MyService/CheckEvenOdd",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MyserviceServer).CheckEvenOdd(ctx, req.(*CheckEvenOddRequest))
+		return srv.(MyServiceServer).CheckEvenOdd(ctx, req.(*CheckEvenOddRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Myservice_ServiceDesc is the grpc.ServiceDesc for Myservice service.
+// MyService_ServiceDesc is the grpc.ServiceDesc for MyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Myservice_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.myservice",
-	HandlerType: (*MyserviceServer)(nil),
+var MyService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.MyService",
+	HandlerType: (*MyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Reverse",
-			Handler:    _Myservice_Reverse_Handler,
+			Handler:    _MyService_Reverse_Handler,
 		},
 		{
 			MethodName: "CheckEvenOdd",
-			Handler:    _Myservice_CheckEvenOdd_Handler,
+			Handler:    _MyService_CheckEvenOdd_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
