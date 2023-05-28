@@ -51,7 +51,7 @@ func main() {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 
-	// gRPC 서버 인스턴스 생성
+	// gRPC 서버 인스턴스 생성합니다.
 	s := grpc.NewServer()
 
 	// MyService 서비스를 등록합니다.
