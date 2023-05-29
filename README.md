@@ -35,6 +35,11 @@
 
 </br>
 
+---
+
+</br>
+
+
 ### 프로젝트를 시작하기 위한 사전 준비
 
 </br>
@@ -56,6 +61,9 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
 ```
 
 </br>
+---
+
+</br>
 
 ### myservice.proto 파일 컴파일
 
@@ -72,6 +80,9 @@ $ protoc -I=. \
 3. 컴파일을 진행하면 `myservice.pb.go`, `myservice_grpc.pb.go` 파일이 생성됩니다.
 
 </br>
+---
+
+</br>
 
 
 ### server 실행
@@ -84,6 +95,9 @@ $ protoc -I=. \
 ```bash
 $ go run main.go
 ```
+</br>
+---
+
 </br>
 
 
