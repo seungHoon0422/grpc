@@ -4,7 +4,7 @@
 </br>
 
 <aside>
-💡 1. 문자열을 입력 받은뒤 뒤집어서 출력해 주는 RPC</br>
+💡 1. 문자열을 입력 받은 뒤 뒤집어서 출력해 주는 RPC</br>
 💡 2. 정수를 입력받아서 홀수, 짝수 여부를 알려주는 RPC
 </aside>
 
@@ -44,16 +44,15 @@
 
 </br>
 
-- Go 언어 설치
-Go 언어를 사용하여 gRPC 서버를 작성하기 위해서는 먼저 Go 언어를 설치해야 합니다. 
+- `Go 언어 설치` : Go 언어를 사용하여 gRPC 서버를 작성하기 위해서는 먼저 Go 언어를 설치해야 합니다. 
 
 </br>
 
-- 프로토콜 버퍼 설치: gRPC는 프로토콜 버퍼(Protocol Buffers)를 사용하여 데이터를 직렬화하고 RPC 인터페이스를 정의합니다. 프로토콜 버퍼 컴파일러인 protoc를 설치해야 합니다. 
+- `프로토콜 버퍼 설치` : gRPC는 프로토콜 버퍼(Protocol Buffers)를 사용하여 데이터를 직렬화하고 RPC 인터페이스를 정의합니다. 프로토콜 버퍼 컴파일러인 protoc를 설치해야 합니다. 
 
 </br>
 
-- Go 언어용 프로토콜 버퍼 플러그인을 설치해야 합니다. 터미널에서 다음 명령을 실행하여 설치합니다.
+- Go 언어용 프로토콜 `버퍼 플러그인`을 설치해야 합니다. 터미널에서 다음 명령을 실행하여 설치합니다.
 
 ```shell
 $ go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27
@@ -93,7 +92,7 @@ $ protoc -I=. \
 </br>
 
 1. server 디렉토리로 이동
-2. server 실행
+2. gRPC Server 실행
 3. 서버는 localhost:50051 port에서 실행 
 ```bash
 $ go run main.go
@@ -111,7 +110,7 @@ $ go run main.go
 </br>
 
 1. client 디렉토리로 이동
-2. client 서비스 실행
+2. gRPC Client 실행
 ```bash
 $ go run client.go
 ```
