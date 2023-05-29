@@ -37,10 +37,13 @@ func (s *server) CheckEvenOdd(ctx context.Context, req *pb.CheckEvenOddRequest) 
 
 // reverseString 함수는 문자열을 뒤집습니다.
 func reverseString(s string) string {
-	runes := []rune(s)
+
+	runes := []rune(s) // rune 자료형(4byte)을 활용해 문자열을 배열로 변환합니다.
 	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		// 투포인터를 활용해 맨 앞, 뒤에 문자부터 순서대로 변경
 		runes[i], runes[j] = runes[j], runes[i]
 	}
+	// 변환 완료한 rune 배열을 string으로 변환하여 return
 	return string(runes)
 }
 
