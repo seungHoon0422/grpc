@@ -1,15 +1,21 @@
 
 # Golang과 gRPC를 활용한 서버 구현
 
+</br>
+
 <aside>
-💡 1. 문자열을 입력 받은뒤 뒤집어서 출력해 주는 RPC
-</aside>
-<aside>
+💡 1. 문자열을 입력 받은뒤 뒤집어서 출력해 주는 RPC</br>
 💡 2. 정수를 입력받아서 홀수, 짝수 여부를 알려주는 RPC
 </aside>
 
+</br>
+
+
 ### 프로젝트 구조
 
+</br>
+
+```
 |— MODULE (module name : github.com/seungHoon0422/grpc/proto)
     |— client
         |—client.go
@@ -24,7 +30,9 @@
 
     |— go.mod
     |— go.sum
+```
 
+</br>
 
 ### myservice.proto 파일 컴파일
 
@@ -59,6 +67,6 @@ go run client.go
 
 
 
-
+- github source code : https://github.com/seungHoon0422/grpc
 
 
