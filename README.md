@@ -50,8 +50,6 @@ Go 언어를 사용하여 gRPC 서버를 작성하기 위해서는 먼저 Go 언
 
 - Go 언어용 프로토콜 버퍼 플러그인을 설치해야 합니다. 터미널에서 다음 명령을 실행하여 설치합니다.
 
-</br>
-
 ```shell
 $ go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27
 $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
@@ -60,6 +58,8 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
 </br>
 
 ### myservice.proto 파일 컴파일
+
+</br>
 
 1. proto 디렉토리로 이동
 2. myservice.proto 파일 컴파일 진행
@@ -71,7 +71,12 @@ $ protoc -I=. \
 ```
 3. 컴파일을 진행하면 `myservice.pb.go`, `myservice_grpc.pb.go` 파일이 생성됩니다.
 
+</br>
+
+
 ### server 실행
+
+</br>
 
 1. server 디렉토리로 이동
 2. server 실행
@@ -79,9 +84,12 @@ $ protoc -I=. \
 ```bash
 $ go run main.go
 ```
+</br>
 
 
 ### client 실행
+
+</br>
 
 1. client 디렉토리로 이동
 2. client 서비스 실행
@@ -93,6 +101,7 @@ $ go run client.go
     - 3.1> string을 입력받아 reverse된 string을 보여줍니다.
     - 3.2> 정수를 입력받아 홀수(odd),짝수(even) 여부를 알려줍니다.
 
+</br>
 
 
 - github source code : https://github.com/seungHoon0422/grpc
